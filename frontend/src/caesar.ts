@@ -16,7 +16,7 @@ function decrypt(text: string, rshift: number): string {
   return res
 }
 
-function decrypts25(text: string): Array<string> {
+function bruteforce(text: string): Array<string> {
   let res = []
   for (let i = 1; i < 26; i++) {
     res.push(decrypt(text, i))
@@ -24,4 +24,4 @@ function decrypts25(text: string): Array<string> {
   return res
 }
 
-export { decrypt, decrypts25 }
+export { decrypt, bruteforce }

@@ -1,43 +1,53 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React, { useState } from 'react'
+import { decrypt } from './caesar'
+import './css/App.css'
+
+type ResultTextAreaProps = {
+  text: string
+}
+
+const ResultTextArea: React.FC<ResultTextAreaProps> = props => {
+  return (
+    <>
+    </>
+  )
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState('')
+  const [result, setResult] = useState('')
+
+  function test() {
+    const dec = decrypt(input, 1)
+    setResult(dec)
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className="container sf-site-all">
+      <section className='section sf-site-content'>
+        <div className='columns'>
+          <div className='column'>
+            <p>Input</p>
+            <textarea
+              className='code-text'
+              placeholder='Input code you want to decrypt.'
+              value={input}
+              onChange={(e) => setInput(e.target.value)} />
+            <button
+              className='button is-info'
+              onClick={() => test()}>
+              Brute Force
+            </button>
+          </div>
+          <div className='column'>
+            <p>Result</p>
+            <textarea
+              className='code-text'
+              value={result}
+              onChange={(e) => setResult(e.target.value)} />
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

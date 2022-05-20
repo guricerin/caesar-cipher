@@ -1,4 +1,4 @@
-import { decrypt, decrypts25 } from "../caesar"
+import { decrypt, bruteforce } from "../caesar"
 
 // https://play.picoctf.org/practice/challenge/144?originalEvent=34&page=1
 const target = "cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_nSkgmDJE}"
@@ -36,12 +36,12 @@ test('decrypt', () => {
   })
 })
 
-test('decrypts25', () => {
+test('bruteforce', () => {
   const it = [...expecteds.entries()].sort((a, b) => {
     return a[0] - b[0] // キーで昇順
   }).values()
   const es = Array.from(new Map(it).values())
-  const actuals = decrypts25(target)
+  const actuals = bruteforce(target)
 
   es.forEach((expected, i) => {
     expect(actuals[i]).toBe(expected)
