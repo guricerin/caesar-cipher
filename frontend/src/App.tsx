@@ -51,6 +51,7 @@ function App() {
                 <div className='level-item'>
                   <button
                     className='button is-info'
+                    disabled={input === ''}
                     onClick={() => onBruteForce()}>
                     Brute Force
                   </button>
